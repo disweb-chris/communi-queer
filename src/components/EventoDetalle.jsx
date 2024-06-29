@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
+import styles from "../assets/styles/EventoDetalle.module.css";
 
 const EventoDetalle = () => {
   const { state } = useContext(AppContext);
@@ -12,15 +13,17 @@ const EventoDetalle = () => {
   }
 
   return (
-    <div>
-      {event.image && <img src={event.image} alt={event.title} />}
+    <div className={styles.eventDetail}>
       <h1>{event.title}</h1>
-      <p>Fecha: {event.date}</p>
-      <p>{event.location}</p>
-      <p>Precio: ${event.price}</p>
       <p>{event.description}</p>
+      {event.image && <img src={event.image} alt={event.title} />}
+      <div className={styles.eventInfo}>
+        <p><strong>Fecha:</strong> {event.date}</p>
+        <p><strong>Ubicación:</strong> {event.location}</p>
+        <p><strong>Precio:</strong> ${event.price}</p>
+      </div>
       <Link to={`/compra/${event.id}`}>
-        <button>Comprar Entradas</button>
+        <button className={styles.purchaseButton}>Comprar Entradas</button>
       </Link>
     </div>
   );
