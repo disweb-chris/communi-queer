@@ -6,6 +6,7 @@ import Login from "../components/Login";
 import Registro from "../components/Registro";
 import Compra from "../components/Compra";
 import { AppProvider } from "../context/AppContext";
+import PrivateRoute from "../components/PrivateRoute";
 
 const App = () => {
   return (
@@ -16,7 +17,14 @@ const App = () => {
           <Route path="/evento/:id" element={<EventoDetalle />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
-          <Route path="/compra/:id" element={<Compra />} />
+          <Route 
+            path="/compra/:id" 
+            element={
+              <PrivateRoute>
+                <Compra />
+              </PrivateRoute>
+            } 
+          />
         </Routes>
       </Router>
     </AppProvider>
