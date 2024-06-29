@@ -15,7 +15,9 @@ const EventoDetalle = () => {
     <div>
       {event.image && <img src={event.image} alt={event.title} />}
       <h1>{event.title}</h1>
+      <p>Fecha: {event.date}</p>
       <p>{event.location}</p>
+      <p>Precio: ${event.price}</p>
       <p>{event.description}</p>
       <Link to={`/compra/${event.id}`}>
         <button>Comprar Entradas</button>
