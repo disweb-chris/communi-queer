@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getDatabase, ref, push } from "firebase/database";
 import { AppContext } from "../context/AppContext";
@@ -10,14 +10,13 @@ const Compra = () => {
 
   const event = state.events.find((event) => event.id === id); // Encontrar el evento correspondiente
 
-  if (!event) {
-    return <div>Evento no encontrado</div>;
-  }
-
-  if (!state.user) {
-    navigate("/login"); // Redirigir a la página de inicio de sesión si no está autenticado
-    return null;
-  }
+  useEffect(() => {
+    if (!event) {
+      console.error("Evento no encontrado");
+    } else if (!state.user) {
+      navigate("/login"); // Redirigir a la página de inicio de sesión si no está autenticado
+    }
+  }, [event, state.user, navigate]);
 
   const handlePurchase = async () => {
     const db = getDatabase();
@@ -34,9 +33,14 @@ const Compra = () => {
     }
   };
 
+  if (!event) {
+    return <div>Evento no encontrado</div>;
+  }
+
   return (
     <div>
       <h1>Comprar Entradas para {event.title}</h1>
+      <p>Precio: ${event.price}</p>
       <button onClick={handlePurchase}>Comprar</button>
     </div>
   );
