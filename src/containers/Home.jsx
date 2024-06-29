@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { db } from "../firebase"; // Importar la instancia de la base de datos inicializada
 import { ref, get, child } from "firebase/database";
 import { AppContext } from "../context/AppContext";
+import styles from "../assets/styles/Home.module.css";
 
 const Home = () => {
   const { state, dispatch } = useContext(AppContext); // Usar contexto global
@@ -31,16 +32,15 @@ const Home = () => {
   }, [dispatch]); // Ejecutar solo una vez al montar el componente
 
   return (
-    <div>
+    <div className={styles.home}>
       <h1>Eventos</h1>
-      <div>
+      <div className={styles.eventList}>
         {state.events.map((event) => (
-          <div key={event.id}>
+          <div key={event.id} className={styles.event}>
             <Link to={`/evento/${event.id}`}>
-            {event.image && <img src={event.image} alt={event.title} />}
               <h2>{event.title}</h2>
-              
               <p>{event.description}</p>
+              {event.image && <img src={event.image} alt={event.title} />}
             </Link>
           </div>
         ))}

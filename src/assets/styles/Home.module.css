@@ -1,0 +1,33 @@
+.home {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .eventList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .event {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    text-align: left;
+  }
+  
+  .event h2 {
+    margin: 0 0 10px;
+  }
+  
+  .event img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+  
+  .event p {
+    margin: 10px 0;
+  }
+  

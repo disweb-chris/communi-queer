@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { getAuth, signOut } from "firebase/auth";
+import styles from "../assets/styles/Header.module.css";
 
 const Header = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -16,8 +17,11 @@ const Header = () => {
   };
 
   return (
-    <header>
-      <nav>
+    <header className={styles.header}>
+      <div className={styles.logo}>
+        <Link to="/">Mi Aplicación de Eventos</Link>
+      </div>
+      <nav className={styles.navLinks}>
         <Link to="/">Inicio</Link>
         {state.user ? (
           <>
