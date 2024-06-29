@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
 import { AppContext } from "../context/AppContext";
+import styles from "../assets/styles/Registro.module.css";
 
 const Registro = () => {
   const [email, setEmail] = useState("");
@@ -32,23 +33,29 @@ const Registro = () => {
   };
 
   return (
-    <div>
+    <div className={styles.register}>
       <h2>Crear Cuenta</h2>
       <form onSubmit={handleRegister}>
-        <input
-          type="email"
-          placeholder="Correo electrónico"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <label>
+          Correo electrónico:
+          <input
+            type="email"
+            placeholder="Correo electrónico"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Contraseña:
+          <input
+            type="password"
+            placeholder="Contraseña"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </label>
         <button type="submit">Crear Cuenta</button>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}

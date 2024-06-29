@@ -1,0 +1,35 @@
+.login {
+    padding: 20px;
+  }
+  
+  .login h2 {
+    margin-top: 0;
+  }
+  
+  .login form {
+    margin: 20px 0;
+  }
+  
+  .login label {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  .login input {
+    padding: 5px;
+    margin-top: 5px;
+  }
+  
+  .login button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .login button:hover {
+    background-color: #0056b3;
+  }
+  
