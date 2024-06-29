@@ -1,0 +1,110 @@
+import React, { useState, useContext, useEffect } from "react";
+import { getDatabase, ref, get, update, query, orderByChild, equalTo } from "firebase/database";
+import { getAuth, updateEmail } from "firebase/auth";
+import { AppContext } from "../context/AppContext";
+
+const UserProfile = () => {
+  const { state, dispatch } = useContext(AppContext);
+  const [email, setEmail] = useState("");
+  const [userData, setUserData] = useState({});
+  const [purchases, setPurchases] = useState([]);
+  const auth = getAuth();
+
+  useEffect(() => {
+    if (state.user) {
+      const db = getDatabase();
+      const userRef = ref(db, 'usuarios/' + state.user.uid);
+
+      get(userRef).then((snapshot) => {
+        if (snapshot.exists()) {
+          setUserData(snapshot.val());
+          setEmail(snapshot.val().email);
+        } else {
+          console.log("No data available");
+        }
+      }).catch((error) => {
+        console.error(error);
+      });
+
+      const purchasesRef = query(ref(db, 'compras'), orderByChild('userId'), equalTo(state.user.uid));
+
+      get(purchasesRef).then((snapshot) => {
+        if (snapshot.exists()) {
+          const purchaseData = snapshot.val();
+          const purchaseList = Object.keys(purchaseData).map(key => ({
+            id: key,
+            ...purchaseData[key]
+          }));
+
+          const eventPromises = purchaseList.map(purchase =>
+            get(ref(db, 'events/' + purchase.eventId)).then(eventSnapshot => ({
+              ...purchase,
+              eventTitle: eventSnapshot.val().title,
+              eventDate: eventSnapshot.val().date
+            }))
+          );
+
+          Promise.all(eventPromises).then(purchasesWithDetails => {
+            setPurchases(purchasesWithDetails);
+          });
+        } else {
+          console.log("No data available");
+        }
+      }).catch((error) => {
+        console.error("Error fetching purchase history: ", error);
+      });
+    }
+  }, [state.user]);
+
+  const handleUpdateProfile = async (e) => {
+    e.preventDefault();
+    const db = getDatabase();
+    const userRef = ref(db, 'usuarios/' + state.user.uid);
+
+    try {
+      await updateEmail(auth.currentUser, email);
+      await update(userRef, { email });
+      dispatch({ type: "SET_USER", payload: { ...state.user, email } });
+      alert('Perfil actualizado con éxito');
+    } catch (error) {
+      console.error("Error al actualizar el perfil: ", error);
+    }
+  };
+
+  if (!state.user) {
+    return <div>Cargando...</div>;
+  }
+
+  return (
+    <div>
+      <h2>Perfil de Usuario</h2>
+      <form onSubmit={handleUpdateProfile}>
+        <label>
+          Correo electrónico:
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </label>
+        <button type="submit">Actualizar Perfil</button>
+      </form>
+
+      <h2>Historial de Compras</h2>
+      {purchases.length > 0 ? (
+        <ul>
+          {purchases.map((purchase) => (
+            <li key={purchase.id}>
+              Evento: {purchase.eventTitle}, Fecha del evento: {new Date(purchase.eventDate).toLocaleDateString()}, Cantidad: {purchase.cantidad}, Fecha de compra: {new Date(purchase.timestamp).toLocaleDateString()}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No tienes compras registradas.</p>
+      )}
+    </div>
+  );
+};
+
+export default UserProfile;
