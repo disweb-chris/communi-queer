@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
+import { getAuth, signOut } from "firebase/auth";
 
 const Header = () => {
   const { state, dispatch } = useContext(AppContext);
 
   const handleLogout = () => {
-    dispatch({ type: "SET_USER", payload: null });
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      dispatch({ type: "SET_USER", payload: null });
+    }).catch((error) => {
+      console.error("Error al cerrar sesión: ", error);
+    });
   };
 
   return (
