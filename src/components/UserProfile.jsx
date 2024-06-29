@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { getDatabase, ref, get, update, query, orderByChild, equalTo } from "firebase/database";
 import { getAuth, updateEmail } from "firebase/auth";
 import { AppContext } from "../context/AppContext";
+import styles from "../assets/styles/UserProfile.module.css";
 
 const UserProfile = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -76,7 +77,7 @@ const UserProfile = () => {
   }
 
   return (
-    <div>
+    <div className={styles.profile}>
       <h2>Perfil de Usuario</h2>
       <form onSubmit={handleUpdateProfile}>
         <label>
@@ -91,18 +92,20 @@ const UserProfile = () => {
         <button type="submit">Actualizar Perfil</button>
       </form>
 
-      <h2>Historial de Compras</h2>
-      {purchases.length > 0 ? (
-        <ul>
-          {purchases.map((purchase) => (
-            <li key={purchase.id}>
-              Evento: {purchase.eventTitle}, Fecha del evento: {new Date(purchase.eventDate).toLocaleDateString()}, Cantidad: {purchase.cantidad}, Fecha de compra: {new Date(purchase.timestamp).toLocaleDateString()}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No tienes compras registradas.</p>
-      )}
+      <div className={styles.purchaseHistory}>
+        <h2>Historial de Compras</h2>
+        {purchases.length > 0 ? (
+          <ul>
+            {purchases.map((purchase) => (
+              <li key={purchase.id}>
+                Evento: {purchase.eventTitle}, Fecha del evento: {new Date(purchase.eventDate).toLocaleDateString()}, Cantidad: {purchase.cantidad}, Fecha de compra: {new Date(purchase.timestamp).toLocaleDateString()}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No tienes compras registradas.</p>
+        )}
+      </div>
     </div>
   );
 };

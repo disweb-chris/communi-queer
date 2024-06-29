@@ -1,0 +1,35 @@
+.purchase {
+    padding: 20px;
+  }
+  
+  .purchase h1 {
+    margin-top: 0;
+  }
+  
+  .purchase p {
+    margin: 10px 0;
+  }
+  
+  .purchase label {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  .purchase input {
+    padding: 5px;
+    margin-top: 5px;
+  }
+  
+  .purchaseButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .purchaseButton:hover {
+    background-color: #0056b3;
+  }
+  

@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getDatabase, ref, push } from "firebase/database";
 import { AppContext } from "../context/AppContext";
+import styles from "../assets/styles/Compra.module.css";
 
 const Compra = () => {
   const { state } = useContext(AppContext);
@@ -40,7 +41,7 @@ const Compra = () => {
   }
 
   return (
-    <div>
+    <div className={styles.purchase}>
       <h1>Comprar Entradas para {event.title}</h1>
       <p>Precio por entrada: ${event.price}</p>
       <label>
@@ -54,7 +55,7 @@ const Compra = () => {
         />
       </label>
       <p>Total: ${event.price * cantidad}</p>
-      <button onClick={handlePurchase}>Comprar</button>
+      <button className={styles.purchaseButton} onClick={handlePurchase}>Comprar</button>
     </div>
   );
 };

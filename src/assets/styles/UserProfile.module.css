@@ -1,0 +1,53 @@
+.profile {
+    padding: 20px;
+  }
+  
+  .profile h2 {
+    margin-top: 0;
+  }
+  
+  .profile form {
+    margin: 20px 0;
+  }
+  
+  .profile label {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  .profile input {
+    padding: 5px;
+    margin-top: 5px;
+  }
+  
+  .profile button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .profile button:hover {
+    background-color: #0056b3;
+  }
+  
+  .purchaseHistory {
+    margin-top: 20px;
+  }
+  
+  .purchaseHistory ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .purchaseHistory li {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: black;
+  }
+  
