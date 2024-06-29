@@ -7,6 +7,7 @@ import { AppContext } from "../context/AppContext";
 const Registro = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const { dispatch } = useContext(AppContext);
   const navigate = useNavigate();
 
@@ -18,7 +19,6 @@ const Registro = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       
-      // Guardar los datos del usuario en Realtime Database
       await set(ref(db, 'usuarios/' + user.uid), {
         email: user.email,
         uid: user.uid
@@ -27,7 +27,7 @@ const Registro = () => {
       dispatch({ type: "SET_USER", payload: user });
       navigate("/");
     } catch (error) {
-      console.error("Error al crear la cuenta: ", error.message);
+      setError("Error al crear la cuenta: " + error.message);
     }
   };
 
@@ -51,6 +51,7 @@ const Registro = () => {
         />
         <button type="submit">Crear Cuenta</button>
       </form>
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 };
