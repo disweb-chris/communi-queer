@@ -3,6 +3,7 @@ import { getDatabase, ref, get, update, query, orderByChild, equalTo } from "fir
 import { getAuth, updateEmail } from "firebase/auth";
 import { AppContext } from "../context/AppContext";
 import styles from "../assets/styles/UserProfile.module.css";
+import { db } from '../firebase'; 
 
 const UserProfile = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -41,7 +42,8 @@ const UserProfile = () => {
             get(ref(db, 'events/' + purchase.eventId)).then(eventSnapshot => ({
               ...purchase,
               eventTitle: eventSnapshot.val().title,
-              eventDate: eventSnapshot.val().date
+              eventDate: eventSnapshot.val().date,
+              eventImage: eventSnapshot.val().image // Obtener la URL de la imagen
             }))
           );
 
@@ -95,10 +97,16 @@ const UserProfile = () => {
       <div className={styles.purchaseHistory}>
         <h2>Historial de Compras</h2>
         {purchases.length > 0 ? (
-          <ul>
+          <ul className={styles.purchaseList}>
             {purchases.map((purchase) => (
-              <li key={purchase.id}>
-                Evento: {purchase.eventTitle}, Fecha del evento: {new Date(purchase.eventDate).toLocaleDateString()}, Cantidad: {purchase.cantidad}, Fecha de compra: {new Date(purchase.timestamp).toLocaleDateString()}
+              <li key={purchase.id} className={styles.purchaseItem}>
+                <img src={purchase.eventImage} alt={purchase.eventTitle} className={styles.eventImage} />
+                <div>
+                  <p>Evento: {purchase.eventTitle}</p>
+                  <p>Fecha del evento: {new Date(purchase.eventDate).toLocaleDateString()}</p>
+                  <p>Cantidad: {purchase.cantidad}</p>
+                  <p>Fecha de compra: {new Date(purchase.timestamp).toLocaleDateString()}</p>
+                </div>
               </li>
             ))}
           </ul>

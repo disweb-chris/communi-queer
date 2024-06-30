@@ -1,53 +1,65 @@
 .profile {
-    padding: 20px;
-  }
-  
-  .profile h2 {
-    margin-top: 0;
-  }
-  
-  .profile form {
-    margin: 20px 0;
-  }
-  
-  .profile label {
-    display: block;
-    margin: 10px 0;
-  }
-  
-  .profile input {
-    padding: 5px;
-    margin-top: 5px;
-  }
-  
-  .profile button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .profile button:hover {
-    background-color: #0056b3;
-  }
-  
-  .purchaseHistory {
-    margin-top: 20px;
-  }
-  
-  .purchaseHistory ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .purchaseHistory li {
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    color: black;
-  }
-  
+  padding: 20px;
+}
+
+.profile h2 {
+  margin-top: 0;
+}
+
+.profile form {
+  margin: 20px 0;
+}
+
+.profile label {
+  display: block;
+  margin: 10px 0;
+}
+
+.profile input {
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.profile button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.profile button:hover {
+  background-color: #0056b3;
+}
+
+.purchaseHistory {
+  margin-top: 20px;
+}
+
+.purchaseList {
+  display: flex; /* Habilitar el modelo de caja flexible */
+  flex-wrap: wrap; /* Para que las tarjetas salten a una nueva línea si no caben en una sola */
+  gap: 20px; /* Espacio entre las tarjetas */
+  list-style-type: none; /* Eliminar los puntos de la lista */
+  padding: 0; /* Eliminar el padding por defecto */
+}
+
+.purchaseItem {
+  flex: 1 1 calc(33.333% - 20px); /* Hacer que cada tarjeta ocupe un tercio del contenedor con espacio entre ellas */
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  color: black;
+  box-sizing: border-box; /* Asegurarse de que el padding y border se incluyan en el ancho total */
+  display: flex; /* Añadido para permitir el modelo flexible en el contenido de la tarjeta */
+  align-items: center; /* Centrar verticalmente los elementos dentro de la tarjeta */
+}
+
+.eventImage {
+  max-width: 100px; /* Limitar el tamaño máximo de la imagen */
+  margin-right: 20px; /* Espacio entre la imagen y el texto */
+  border-radius: 5px; /* Bordes redondeados para la imagen */
+}
