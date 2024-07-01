@@ -15,7 +15,7 @@ import Footer from "../components/Footer";
 const App = () => {
   return (
     <AppProvider>
-      <Router>
+      <Router basename="/communi-queer">
         <Header />
         <main>
           <Routes>
