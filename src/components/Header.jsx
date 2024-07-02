@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <Link to="/">Mi Aplicación de Eventos</Link>
+        <Link to="/">Communi Queer</Link>
       </div>
       <nav className={styles.navLinks}>
         <Link to="/">Inicio</Link>
