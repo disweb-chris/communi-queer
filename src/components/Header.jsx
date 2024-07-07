@@ -26,6 +26,7 @@ const Header = () => {
         {state.user ? (
           <>
             <Link to="/perfil">Perfil</Link>
+            <Link to="/carrito">Mi carrito</Link>
             <button onClick={handleLogout}>Cerrar Sesión</button>
           </>
         ) : (

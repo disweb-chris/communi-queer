@@ -5,6 +5,7 @@ import EventoDetalle from "../components/EventoDetalle";
 import Login from "../components/Login";
 import Registro from "../components/Registro";
 import Compra from "../components/Compra";
+import Carrito from "../containers/Carrito";
 import UserProfile from "../components/UserProfile";
 import PurchaseHistory from "../components/PurchaseHistory";
 import { AppProvider } from "../context/AppContext";
@@ -24,7 +25,15 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/registro" element={<Registro />} />
             <Route 
-              path="/compra/:id" 
+              path="/carrito" 
+              element={
+                <PrivateRoute>
+                  <Carrito />
+                </PrivateRoute>
+              } 
+            />
+            <Route 
+              path="/compra"  // Asegúrate de que esta ruta coincide con la que usas en navigate
               element={
                 <PrivateRoute>
                   <Compra />

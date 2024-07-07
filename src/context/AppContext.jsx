@@ -5,6 +5,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 const initialState = {
   user: null,
   events: [],
+  carrito: [],
 };
 
 export const AppContext = createContext(initialState);

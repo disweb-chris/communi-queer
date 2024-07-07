@@ -4,13 +4,17 @@ import { AppContext } from "../context/AppContext";
 import styles from "../assets/styles/EventoDetalle.module.css";
 
 const EventoDetalle = () => {
-  const { state } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
   const { id } = useParams(); // Obtener el ID del evento desde la URL
   const event = state.events.find((event) => event.id === id); // Encontrar el evento correspondiente
 
   if (!event) {
     return <div>Evento no encontrado</div>;
   }
+
+  const handleAddToCart = () => {
+    dispatch({ type: "ADD_TO_CARRITO", payload: event });
+  };
 
   return (
     <div className={styles.eventDetail}>
@@ -22,8 +26,8 @@ const EventoDetalle = () => {
         <p><strong>Ubicación:</strong> {event.location}</p>
         <p><strong>Precio:</strong> ${event.price}</p>
       </div>
-      <Link to={`/compra/${event.id}`}>
-        <button className={styles.purchaseButton}>Comprar Entradas</button>
+      <Link to="/carrito">
+        <button className={styles.purchaseButton} onClick={handleAddToCart}>Comprar Entradas</button>
       </Link>
     </div>
   );
