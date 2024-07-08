@@ -29,7 +29,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* Permitir que los elementos envuelvan en pantallas pequeñas */
+  flex-wrap: wrap; 
 }
 
 .purchaseItem img {

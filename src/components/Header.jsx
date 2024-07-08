@@ -51,7 +51,7 @@ const Header = () => {
         ) : (
           <>
             <Link to="/login">Iniciar Sesión</Link>
-            <Link to="/registro">Registrarse</Link>
+            <Link to="/registro" className={styles.buttonLink}>Registrarse</Link>
           </>
         )}
       </nav>
