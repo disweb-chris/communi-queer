@@ -1,7 +1,7 @@
 .purchase {
   padding: 2rem;
   text-align: center;
-  background-color: #f3f3f3;
+  background-color: #f3f3f3cc;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   max-width: 600px;
@@ -29,6 +29,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap; /* Permitir que los elementos envuelvan en pantallas pequeñas */
 }
 
 .purchaseItem img {
@@ -85,4 +86,52 @@ button {
 
 .removeItemButton:hover {
   background-color: #c0392b;
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+  .purchase {
+    padding: 1rem;
+    margin: 2rem;
+    max-width: 100%;
+  }
+
+  .purchase h1 {
+    font-size: 2rem;
+  }
+
+  .purchaseItem {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .purchaseItem img {
+    max-width: 260px;
+    margin-bottom: 10px;
+  }
+
+  .purchaseItem span {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .cantidadInput {
+    width: 50px;
+  }
+
+  .purchase p {
+    font-size: 1.2rem;
+  }
+
+  .purchaseButton {
+    width: 100%;
+    padding: 0.8em;
+    font-size: 1.2em;
+  }
+
+  .removeItemButton {
+    width: 100%;
+    margin-top: 10px;
+  }
 }
