@@ -1,6 +1,7 @@
 .home {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 10px; 
 }
 
 /* Estilos para el banner */
@@ -63,4 +64,32 @@
 .event p {
   margin: 10px 0;
   color: #1a1a1a;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .banner {
+    height: 300px; /* Reducir la altura del banner */
+  }
+
+  .bannerContent {
+    margin: 0 15px;
+  }
+
+  .banner h2 {
+    font-size: 1.8em; 
+  }
+
+  .banner p {
+    font-size: 1em; 
+  }
+
+  .eventList {
+    grid-template-columns: 1fr; 
+  }
+
+  .event {
+    padding: 15px;
+    margin: 10px 15px;
+  }
 }
