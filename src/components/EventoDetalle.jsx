@@ -20,7 +20,14 @@ const EventoDetalle = () => {
     <div className={styles.eventDetail}>
       <div className={styles.eventHeader}>
         <h1>{event.title}</h1>
-        <p>{event.descriptionShort}</p>
+        {event.image && (
+          <img
+            src={event.image}
+            alt={event.title}
+            className={styles.mobileEventImage}
+          />
+        )}
+        <p className={styles.mobileEventDescription}>{event.descriptionShort}</p>
       </div>
       <div className={styles.eventContent}>
         <div className={styles.eventInfo}>
@@ -35,9 +42,19 @@ const EventoDetalle = () => {
           </Link>
         </div>
         <div className={styles.rightColumn}>
-          {event.image && <img src={event.image} alt={event.title} className={styles.eventImage} />}
+          {event.image && (
+            <img
+              src={event.image}
+              alt={event.title}
+              className={styles.desktopEventImage}
+            />
+          )}
           <div className={styles.promoSection}>
-            <img src="https://firebasestorage.googleapis.com/v0/b/communi-queer.appspot.com/o/eventos%2Frecital-de-jazz.jpg?alt=media&token=b9a3a21d-995b-4c42-9571-9f076d6f3e99" alt="Promoción Especial" className={styles.promoImage} />
+            <img
+              src="https://firebasestorage.googleapis.com/v0/b/communi-queer.appspot.com/o/eventos%2Frecital-de-jazz.jpg?alt=media&token=b9a3a21d-995b-4c42-9571-9f076d6f3e99"
+              alt="Promoción Especial"
+              className={styles.promoImage}
+            />
             <div className={styles.promoText}>
               <h2>¡No te pierdas nuestra promoción especial!</h2>
               <p>Compra tus entradas ahora y obtén un descuento exclusivo en tus próximas compras.</p>

@@ -87,6 +87,14 @@
   transform: scale(1.05);
 }
 
+.desktopEventImage {
+  display: block;
+}
+
+.mobileEventImage {
+  display: none;
+}
+
 /* Estilos para la sección de promoción */
 .promoSection {
   display: flex;
@@ -117,4 +125,58 @@
 .promoText p {
   font-size: 1.2em;
   margin: 10px 0 0;
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+  .eventContent {
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .eventInfo, .rightColumn {
+    max-width: 100%;
+  }
+
+  .eventHeader h1 {
+    font-size: 2em;
+  }
+
+  .eventHeader p {
+    font-size: 1em;
+  }
+
+  .promoSection {
+    flex-direction: column;
+  }
+
+  .promoImage {
+    max-width: 100%;
+  }
+
+  .promoText h2 {
+    font-size: 1.5em;
+  }
+
+  .promoText p {
+    font-size: 1em;
+  }
+
+  .desktopEventImage {
+    display: none; /* Ocultar la imagen en la versión móvil */
+  }
+
+  .mobileEventImage {
+    display: block; /* Mostrar la imagen móvil */
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px 0; /* Espacio entre la imagen y el contenido */
+  }
+
+  .mobileEventDescription {
+    margin-top: 20px; /* Añadir espacio adicional */
+  }
 }
