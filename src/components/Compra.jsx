@@ -72,6 +72,7 @@ const Compra = () => {
       <ul className={styles.purchaseList}>
         {carrito.map((item, index) => (
           <li key={index} className={styles.purchaseItem}>
+            <img src={item.image} alt={item.title} />
             <span>{item.title} - ${item.price} x </span>
             <input
               type="number"
