@@ -80,21 +80,23 @@ const UserProfile = () => {
 
   return (
     <div className={styles.profile}>
-      <h2>Perfil de Usuario</h2>
-      <form onSubmit={handleUpdateProfile}>
-        <label>
-          Correo electrónico:
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Actualizar Perfil</button>
-      </form>
-
-      <div className={styles.purchaseHistory}>
+      <h1>Perfil de Usuario</h1>
+      <div className={styles.section}>
+        <form onSubmit={handleUpdateProfile} className={styles.form}>
+          <h2>Actualizar Información</h2>
+          <label>
+            Correo electrónico:
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+          <button type="submit" className={styles.updateButton}>Actualizar Perfil</button>
+        </form>
+      </div>
+      <div className={styles.section}>
         <h2>Historial de Compras</h2>
         {purchases.length > 0 ? (
           <ul className={styles.purchaseList}>
@@ -102,10 +104,10 @@ const UserProfile = () => {
               <li key={purchase.id} className={styles.purchaseItem}>
                 <img src={purchase.eventImage} alt={purchase.eventTitle} className={styles.eventImage} />
                 <div>
-                  <p>Evento: {purchase.eventTitle}</p>
-                  <p>Fecha del evento: {new Date(purchase.eventDate).toLocaleDateString()}</p>
-                  <p>Cantidad: {purchase.cantidad}</p>
-                  <p>Fecha de compra: {new Date(purchase.timestamp).toLocaleDateString()}</p>
+                  <p><strong>Evento:</strong> {purchase.eventTitle}</p>
+                  <p><strong>Fecha del evento:</strong> {new Date(purchase.eventDate).toLocaleDateString()}</p>
+                  <p><strong>Cantidad:</strong> {purchase.cantidad}</p>
+                  <p><strong>Fecha de compra:</strong> {new Date(purchase.timestamp).toLocaleDateString()}</p>
                 </div>
               </li>
             ))}

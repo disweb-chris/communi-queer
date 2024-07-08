@@ -1,35 +1,65 @@
 .login {
-    padding: 20px;
-  }
-  
-  .login h2 {
-    margin-top: 0;
-  }
-  
-  .login form {
-    margin: 20px 0;
-  }
-  
-  .login label {
-    display: block;
-    margin: 10px 0;
-  }
-  
-  .login input {
-    padding: 5px;
-    margin-top: 5px;
-  }
-  
-  .login button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .login button:hover {
-    background-color: #0056b3;
-  }
-  
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 171px);
+  background: url('../statics/login-image.jpg') no-repeat center center/cover;
+  position: relative;
+  color: white;
+}
+
+.login::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.login h2, .login form {
+  z-index: 2;
+}
+
+.login form {
+  margin: 20px 0;
+  width: 100%;
+  max-width: 400px;
+}
+
+.login label {
+  display: block;
+  margin: 10px 0;
+}
+
+.login input {
+  padding: 10px;
+  margin-top: 5px;
+  width: 95%;
+  border: none;
+  border-radius: 5px;
+}
+
+.login button {
+  padding: 10px 20px;
+  background-color: #072ac8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.login button:hover {
+  background-color: #0056b3;
+}
+
+.login img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}

@@ -1,35 +1,59 @@
 .register {
-    padding: 20px;
-  }
-  
-  .register h2 {
-    margin-top: 0;
-  }
-  
-  .register form {
-    margin: 20px 0;
-  }
-  
-  .register label {
-    display: block;
-    margin: 10px 0;
-  }
-  
-  .register input {
-    padding: 5px;
-    margin-top: 5px;
-  }
-  
-  .register button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .register button:hover {
-    background-color: #0056b3;
-  }
-  
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 171px); /* Ajustamos para considerar el header y footer */
+  background: url('../statics/registro-image.jpg') no-repeat center center/cover;
+  position: relative;
+  color: white;
+}
+
+.register::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.register h2, .register form, .register p {
+  z-index: 2;
+}
+
+.register form {
+  margin: 20px 0;
+  width: 100%;
+  max-width: 400px;
+}
+
+.register label {
+  display: block;
+  margin: 10px 0;
+}
+
+.register input {
+  padding: 10px;
+  margin-top: 5px;
+  width: 95%;
+  border: none;
+  border-radius: 5px;
+}
+
+.register button {
+  padding: 10px 20px;
+  background-color: #072ac8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.register button:hover {
+  background-color: #0056b3;
+}

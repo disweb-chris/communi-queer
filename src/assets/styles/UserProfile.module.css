@@ -1,35 +1,66 @@
 .profile {
   padding: 20px;
+  max-width: 800px;
+  margin: 25px auto;
+  background-color: #2c2c2c;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
 }
 
-.profile h2 {
+.profile h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+.form {
+  background-color: #333333;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form h2 {
   margin-top: 0;
 }
 
-.profile form {
-  margin: 20px 0;
-}
-
-.profile label {
+.form label {
   display: block;
   margin: 10px 0;
 }
 
-.profile input {
-  padding: 5px;
+.form input {
+  width: calc(100% - 22px);
+  padding: 10px;
   margin-top: 5px;
+  border: 1px solid #555555;
+  border-radius: 4px;
+  background-color: #444444;
+  color: #ffffff;
 }
 
-.profile button {
+.form input:focus {
+  outline: none;
+  border-color: #777777;
+}
+
+.updateButton {
+  display: inline-block;
+  margin-top: 10px;
   padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
+  background-color: #072ac8;
+  color: #ffffff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.profile button:hover {
+.updateButton:hover {
   background-color: #0056b3;
 }
 
@@ -38,28 +69,27 @@
 }
 
 .purchaseList {
-  display: flex; /* Habilitar el modelo de caja flexible */
-  flex-wrap: wrap; /* Para que las tarjetas salten a una nueva línea si no caben en una sola */
-  gap: 20px; /* Espacio entre las tarjetas */
-  list-style-type: none; /* Eliminar los puntos de la lista */
-  padding: 0; /* Eliminar el padding por defecto */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style-type: none;
+  padding: 0;
 }
 
 .purchaseItem {
-  flex: 1 1 calc(33.333% - 20px); /* Hacer que cada tarjeta ocupe un tercio del contenedor con espacio entre ellas */
+  flex: 1 1 calc(33.333% - 20px);
   margin: 10px 0;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #444444;
   border-radius: 8px;
-  background-color: #f9f9f9;
-  color: black;
-  box-sizing: border-box; /* Asegurarse de que el padding y border se incluyan en el ancho total */
-  display: flex; /* Añadido para permitir el modelo flexible en el contenido de la tarjeta */
-  align-items: center; /* Centrar verticalmente los elementos dentro de la tarjeta */
+  background-color: #3a3a3a;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
 }
 
 .eventImage {
-  max-width: 100px; /* Limitar el tamaño máximo de la imagen */
-  margin-right: 20px; /* Espacio entre la imagen y el texto */
-  border-radius: 5px; /* Bordes redondeados para la imagen */
+  max-width: 100px;
+  margin-right: 20px;
+  border-radius: 5px;
 }
