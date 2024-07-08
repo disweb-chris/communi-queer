@@ -58,7 +58,7 @@ const Header = () => {
           <>
             <Link to="/perfil" onClick={closeMenu}>Perfil</Link>
             <Link to="/carrito" onClick={closeMenu}>Mi carrito</Link>
-            <button onClick={() => { handleLogout(); closeMenu(); }}>Cerrar Sesión</button>
+            <button className={styles.buttonLink} onClick={() => { handleLogout(); closeMenu(); }}>Cerrar Sesión</button>
           </>
         ) : (
           <>
