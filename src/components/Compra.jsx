@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getDatabase, ref, push } from "firebase/database";
 import { AppContext } from "../context/AppContext";
 import styles from "../assets/styles/Compra.module.css";
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Compra = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -66,34 +67,72 @@ const Compra = () => {
 
   const total = carrito.reduce((total, item) => total + item.price * (cantidades[item.id] || 1), 0);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        duration: 0.5
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -20, transition: { duration: 0.3 } }
+  };
+
   return (
-    <div className={styles.purchase}>
+    <motion.div 
+      className={styles.purchase}
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
       <h1>Comprar Entradas</h1>
-      <ul className={styles.purchaseList}>
-        {carrito.map((item, index) => (
-          <li key={index} className={styles.purchaseItem}>
-            <img src={item.image} alt={item.title} />
-            <span>{item.title} - ${item.price} x </span>
-            <input
-              type="number"
-              min="1"
-              value={cantidades[item.id]}
-              onChange={(e) => handleCantidadChange(item.id, parseInt(e.target.value))}
-              className={styles.cantidadInput}
-              required
-            />
-            <button
-              className={styles.removeItemButton}
-              onClick={() => handleRemoveItem(item.id)}
+      <motion.ul className={styles.purchaseList}>
+        <AnimatePresence>
+          {carrito.map((item, index) => (
+            <motion.li 
+              key={index} 
+              className={styles.purchaseItem}
+              variants={itemVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
             >
-              Eliminar
-            </button>
-          </li>
-        ))}
-      </ul>
+              <img src={item.image} alt={item.title} />
+              <span>{item.title} - ${item.price} x </span>
+              <input
+                type="number"
+                min="1"
+                value={cantidades[item.id]}
+                onChange={(e) => handleCantidadChange(item.id, parseInt(e.target.value))}
+                className={styles.cantidadInput}
+                required
+              />
+              <button
+                className={styles.removeItemButton}
+                onClick={() => handleRemoveItem(item.id)}
+              >
+                Eliminar
+              </button>
+            </motion.li>
+          ))}
+        </AnimatePresence>
+      </motion.ul>
       <p>Total: ${total}</p>
-      <button className={styles.purchaseButton} onClick={handlePurchase}>Comprar</button>
-    </div>
+      <motion.button 
+        className={styles.purchaseButton} 
+        onClick={handlePurchase}
+        whileHover={{ scale: 1.05 }}
+        transition={{ duration: 0.2 }}
+      >
+        Comprar
+      </motion.button>
+    </motion.div>
   );
 };
 

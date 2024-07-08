@@ -4,6 +4,7 @@ import { getAuth, updateEmail } from "firebase/auth";
 import { AppContext } from "../context/AppContext";
 import styles from "../assets/styles/UserProfile.module.css";
 import { db } from '../firebase'; 
+import { motion } from 'framer-motion';
 
 const UserProfile = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -79,7 +80,12 @@ const UserProfile = () => {
   }
 
   return (
-    <div className={styles.profile}>
+    <motion.div 
+      className={styles.profile}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <h1>Perfil de Usuario</h1>
       <div className={styles.section}>
         <form onSubmit={handleUpdateProfile} className={styles.form}>
@@ -93,30 +99,48 @@ const UserProfile = () => {
               required
             />
           </label>
-          <button type="submit" className={styles.updateButton}>Actualizar Perfil</button>
+          <motion.button 
+            type="submit" 
+            className={styles.updateButton}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.2 }}
+          >
+            Actualizar Perfil
+          </motion.button>
         </form>
       </div>
       <div className={styles.section}>
         <h2>Historial de Compras</h2>
         {purchases.length > 0 ? (
-          <ul className={styles.purchaseList}>
+          <motion.ul 
+            className={styles.purchaseList}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, staggerChildren: 0.1 }}
+          >
             {purchases.map((purchase) => (
-              <li key={purchase.id} className={styles.purchaseItem}>
+              <motion.li 
+                key={purchase.id} 
+                className={styles.purchaseItem}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
                 <img src={purchase.eventImage} alt={purchase.eventTitle} className={styles.eventImage} />
-                <div>
+                <div className={styles.purchaseDetails}>
                   <p><strong>Evento:</strong> {purchase.eventTitle}</p>
                   <p><strong>Fecha del evento:</strong> {new Date(purchase.eventDate).toLocaleDateString()}</p>
                   <p><strong>Cantidad:</strong> {purchase.cantidad}</p>
                   <p><strong>Fecha de compra:</strong> {new Date(purchase.timestamp).toLocaleDateString()}</p>
                 </div>
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
         ) : (
           <p>No tienes compras registradas.</p>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

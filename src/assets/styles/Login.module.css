@@ -5,9 +5,19 @@
   align-items: center;
   justify-content: center;
   min-height: calc(100vh - 171px);
-  background: url('../statics/login-image.jpg') no-repeat center center/cover;
   position: relative;
   color: white;
+  overflow: hidden;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('../statics/login-image.jpg') no-repeat center center/cover;
+  z-index: 0;
 }
 
 .login::before {
@@ -52,10 +62,12 @@
   border-radius: 5px;
   cursor: pointer;
   width: 100%;
+  transition: background-color 0.2s, transform 0.2s;
 }
 
 .login button:hover {
   background-color: #0056b3;
+  transform: scale(1.05);
 }
 
 .login img {

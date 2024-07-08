@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "firebase": "^10.12.2",
+    "framer-motion": "^11.2.13",
     "gh": "^2.8.9",
     "gh-pages": "^6.1.1",
     "pages": "^0.0.16",

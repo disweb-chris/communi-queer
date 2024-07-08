@@ -4,10 +4,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 171px); /* Ajustamos para considerar el header y footer */
-  background: url('../statics/registro-image.jpg') no-repeat center center/cover;
+  min-height: calc(100vh - 171px); 
   position: relative;
   color: white;
+  overflow: hidden;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('../statics/registro-image.jpg') no-repeat center center/cover;
+  z-index: 0;
 }
 
 .register::before {
@@ -52,8 +62,16 @@
   border-radius: 5px;
   cursor: pointer;
   width: 100%;
+  transition: background-color 0.2s, transform 0.2s;
 }
 
 .register button:hover {
   background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.register img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
 }

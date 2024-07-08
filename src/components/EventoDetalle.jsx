@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import styles from "../assets/styles/EventoDetalle.module.css";
+import { motion } from 'framer-motion';
 
 const EventoDetalle = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -17,8 +18,18 @@ const EventoDetalle = () => {
   };
 
   return (
-    <div className={styles.eventDetail}>
-      <div className={styles.eventHeader}>
+    <motion.div 
+      className={styles.eventDetail}
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <motion.div 
+        className={styles.eventHeader}
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
         <h1>{event.title}</h1>
         {event.image && (
           <img
@@ -28,8 +39,13 @@ const EventoDetalle = () => {
           />
         )}
         <p className={styles.mobileEventDescription}>{event.descriptionShort}</p>
-      </div>
-      <div className={styles.eventContent}>
+      </motion.div>
+      <motion.div 
+        className={styles.eventContent}
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+      >
         <div className={styles.eventInfo}>
           <p>{event.description}</p>
           <div className={styles.eventDetails}>
@@ -38,10 +54,22 @@ const EventoDetalle = () => {
             <p><strong>🎟️ Precio:</strong> ${event.price}</p>
           </div>
           <Link to="/carrito">
-            <button className={styles.purchaseButton} onClick={handleAddToCart}>Comprar Entradas</button>
+            <motion.button 
+              className={styles.purchaseButton} 
+              onClick={handleAddToCart}
+              whileHover={{ scale: 1.05, backgroundColor: '#0056b3' }}
+              transition={{ duration: 0.2 }}
+            >
+              Comprar Entradas
+            </motion.button>
           </Link>
         </div>
-        <div className={styles.rightColumn}>
+        <motion.div 
+          className={styles.rightColumn}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
           {event.image && (
             <img
               src={event.image}
@@ -60,9 +88,9 @@ const EventoDetalle = () => {
               <p>Compra tus entradas ahora y obtén un descuento exclusivo en tus próximas compras.</p>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 };
 

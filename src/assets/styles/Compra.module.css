@@ -7,6 +7,7 @@
   max-width: 600px;
   margin: 2rem auto;
   min-height: calc(100vh - 259px);
+  transition: all 0.3s ease-in-out;
 }
 
 .purchase h1 {
@@ -30,6 +31,7 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap; 
+  transition: all 0.3s ease-in-out;
 }
 
 .purchaseItem img {
@@ -67,12 +69,13 @@ button {
   background-color: #1a1a1a;
   color: white;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, transform 0.25s;
   margin-top: 1rem;
 }
 
 .purchaseButton:hover {
   border-color: #646cff;
+  transform: scale(1.05);
 }
 
 .removeItemButton {
@@ -82,10 +85,12 @@ button {
   border-radius: 4px;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  transition: background-color 0.25s, transform 0.25s;
 }
 
 .removeItemButton:hover {
   background-color: #c0392b;
+  transform: scale(1.05);
 }
 
 /* Media Queries para dispositivos móviles */
