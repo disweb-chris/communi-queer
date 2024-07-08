@@ -8,6 +8,7 @@ import styles from "../assets/styles/Header.module.css";
 const Header = () => {
   const { state, dispatch } = useContext(AppContext);
   const [logoUrl, setLogoUrl] = useState('');
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const fetchLogoUrl = async () => {
@@ -33,25 +34,36 @@ const Header = () => {
     });
   };
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <Link to="/">
+        <Link to="/" onClick={closeMenu}>
           {logoUrl ? <img src={logoUrl} alt="Communi Queer Logo" className={styles.logoImage} /> : "Communi Queer"}
         </Link>
       </div>
-      <nav className={styles.navLinks}>
-        <Link to="/">Inicio</Link>
+      <div className={styles.hamburger} onClick={toggleMenu}>
+        &#9776;
+      </div>
+      <nav className={`${styles.navLinks} ${menuOpen ? styles.showMenu : ''}`}>
+        <Link to="/" onClick={closeMenu}>Inicio</Link>
         {state.user ? (
           <>
-            <Link to="/perfil">Perfil</Link>
-            <Link to="/carrito">Mi carrito</Link>
-            <button onClick={handleLogout}>Cerrar Sesión</button>
+            <Link to="/perfil" onClick={closeMenu}>Perfil</Link>
+            <Link to="/carrito" onClick={closeMenu}>Mi carrito</Link>
+            <button onClick={() => { handleLogout(); closeMenu(); }}>Cerrar Sesión</button>
           </>
         ) : (
           <>
-            <Link to="/login">Iniciar Sesión</Link>
-            <Link to="/registro" className={styles.buttonLink}>Registrarse</Link>
+            <Link to="/login" onClick={closeMenu}>Iniciar Sesión</Link>
+            <Link to="/registro" className={styles.buttonLink} onClick={closeMenu}>Registrarse</Link>
           </>
         )}
       </nav>

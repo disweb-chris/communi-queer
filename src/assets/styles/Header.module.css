@@ -1,4 +1,3 @@
-
 .header {
   background-color: #1a1a1a;
   color: white;
@@ -51,4 +50,38 @@
   height: 50px; 
   object-fit: contain;
   margin: 0; 
+}
+
+.hamburger {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Ajustar según la altura del header */
+    left: 0;
+    right: 0;
+    background-color: #1a1a1a;
+    text-align: center;
+    padding: 20px;
+    z-index: 1000;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  .showMenu {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .hamburger {
+    display: block;
+  }
 }
