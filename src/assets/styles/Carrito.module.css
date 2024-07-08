@@ -1,0 +1,63 @@
+/* Carrito.module.css */
+.carritoContainer {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .carritoList {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .carritoItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1rem;
+  }
+  
+  .itemImage {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 1rem;
+  }
+  
+  .itemDetails {
+    flex-grow: 1;
+    text-align: left;
+  }
+  
+  .removeItemButton {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    background-color: #1a1a1a;
+    color: white;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+  
+  .removeItemButton:hover {
+    border-color: #646cff;
+  }
+  
+  .compraButton {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    background-color: #1a1a1a;
+    color: white;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+  
+  .compraButton:hover {
+    border-color: #646cff;
+  }
+  

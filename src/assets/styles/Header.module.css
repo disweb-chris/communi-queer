@@ -10,6 +10,7 @@
   .navLinks {
     display: flex;
     gap: 15px;
+    align-items: center;
   }
   
   .navLinks a, .navLinks button {
@@ -30,4 +31,7 @@
     font-size: 24px;
     font-weight: bold;
   }
-  
+
+  .logo img {
+    width: 23%;
+  }

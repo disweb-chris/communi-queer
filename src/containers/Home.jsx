@@ -5,6 +5,7 @@ import { ref, get, child } from "firebase/database";
 import { AppContext } from "../context/AppContext";
 import styles from "../assets/styles/Home.module.css";
 
+
 const Home = () => {
   const { state, dispatch } = useContext(AppContext); // Usar contexto global
 
@@ -33,13 +34,20 @@ const Home = () => {
 
   return (
     <div className={styles.home}>
+      {/* Sección del banner */}
+      <div className={styles.banner}>
+        <div className={styles.bannerContent}>
+          <h2>Bienvenidos a CommuniQueer</h2>
+          <p>Descubre y participa en los eventos más interesantes y diversos.</p>
+        </div>
+      </div>
+
       <h1>Eventos</h1>
       <div className={styles.eventList}>
         {state.events.map((event) => (
           <div key={event.id} className={styles.event}>
             <Link to={`/evento/${event.id}`}>
               <h2>{event.title}</h2>
-              <p>{event.description}</p>
               {event.image && <img src={event.image} alt={event.title} />}
             </Link>
           </div>

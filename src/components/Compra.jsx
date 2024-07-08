@@ -7,7 +7,7 @@ import styles from "../assets/styles/Compra.module.css";
 const Compra = () => {
   const { state, dispatch } = useContext(AppContext);
   const navigate = useNavigate();
-  const [cantidad, setCantidad] = useState(1); // Estado para manejar la cantidad
+  const [cantidades, setCantidades] = useState({}); // Estado para manejar las cantidades individuales
 
   const { carrito, user } = state;
 
@@ -18,6 +18,13 @@ const Compra = () => {
     } else if (!user) {
       navigate("/login"); // Redirigir a la página de inicio de sesión si no está autenticado
     }
+
+    // Inicializar las cantidades con 1 para cada elemento
+    const initialCantidades = carrito.reduce((acc, item) => {
+      acc[item.id] = 1;
+      return acc;
+    }, {});
+    setCantidades(initialCantidades);
   }, [carrito, user, navigate]);
 
   const handlePurchase = async () => {
@@ -27,7 +34,7 @@ const Compra = () => {
         await push(ref(db, 'compras'), {
           eventId: item.id,
           userId: user.uid,
-          cantidad: cantidad,
+          cantidad: cantidades[item.id],
           timestamp: Date.now()
         });
       }
@@ -39,32 +46,50 @@ const Compra = () => {
     }
   };
 
+  const handleCantidadChange = (id, value) => {
+    setCantidades({
+      ...cantidades,
+      [id]: value
+    });
+  };
+
+  const handleRemoveItem = (id) => {
+    dispatch({ type: 'REMOVE_FROM_CARRITO', payload: { id } });
+    const newCantidades = { ...cantidades };
+    delete newCantidades[id];
+    setCantidades(newCantidades);
+  };
+
   if (carrito.length === 0) {
     return <div>Carrito vacío</div>;
   }
 
-  const total = carrito.reduce((total, item) => total + item.price * cantidad, 0);
+  const total = carrito.reduce((total, item) => total + item.price * (cantidades[item.id] || 1), 0);
 
   return (
     <div className={styles.purchase}>
       <h1>Comprar Entradas</h1>
-      <ul>
+      <ul className={styles.purchaseList}>
         {carrito.map((item, index) => (
-          <li key={index}>
-            {item.title} - ${item.price} x {cantidad}
+          <li key={index} className={styles.purchaseItem}>
+            <span>{item.title} - ${item.price} x </span>
+            <input
+              type="number"
+              min="1"
+              value={cantidades[item.id]}
+              onChange={(e) => handleCantidadChange(item.id, parseInt(e.target.value))}
+              className={styles.cantidadInput}
+              required
+            />
+            <button
+              className={styles.removeItemButton}
+              onClick={() => handleRemoveItem(item.id)}
+            >
+              Eliminar
+            </button>
           </li>
         ))}
       </ul>
-      <label>
-        Cantidad:
-        <input
-          type="number"
-          min="1"
-          value={cantidad}
-          onChange={(e) => setCantidad(parseInt(e.target.value))}
-          required
-        />
-      </label>
       <p>Total: ${total}</p>
       <button className={styles.purchaseButton} onClick={handlePurchase}>Comprar</button>
     </div>

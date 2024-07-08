@@ -18,17 +18,33 @@ const EventoDetalle = () => {
 
   return (
     <div className={styles.eventDetail}>
-      <h1>{event.title}</h1>
-      <p>{event.description}</p>
-      {event.image && <img src={event.image} alt={event.title} />}
-      <div className={styles.eventInfo}>
-        <p><strong>Fecha:</strong> {event.date}</p>
-        <p><strong>Ubicación:</strong> {event.location}</p>
-        <p><strong>Precio:</strong> ${event.price}</p>
+      <div className={styles.eventHeader}>
+        <h1>{event.title}</h1>
+        <p>{event.descriptionShort}</p>
       </div>
-      <Link to="/carrito">
-        <button className={styles.purchaseButton} onClick={handleAddToCart}>Comprar Entradas</button>
-      </Link>
+      <div className={styles.eventContent}>
+        <div className={styles.eventInfo}>
+          <p>{event.description}</p>
+          <div className={styles.eventDetails}>
+            <p><strong>📅 Fecha:</strong> {event.date}</p>
+            <p><strong>📍 Lugar:</strong> {event.location}</p>
+            <p><strong>🎟️ Precio:</strong> ${event.price}</p>
+          </div>
+          <Link to="/carrito">
+            <button className={styles.purchaseButton} onClick={handleAddToCart}>Comprar Entradas</button>
+          </Link>
+        </div>
+        <div className={styles.rightColumn}>
+          {event.image && <img src={event.image} alt={event.title} className={styles.eventImage} />}
+          <div className={styles.promoSection}>
+            <img src="https://firebasestorage.googleapis.com/v0/b/communi-queer.appspot.com/o/eventos%2Frecital-de-jazz.jpg?alt=media&token=b9a3a21d-995b-4c42-9571-9f076d6f3e99" alt="Promoción Especial" className={styles.promoImage} />
+            <div className={styles.promoText}>
+              <h2>¡No te pierdas nuestra promoción especial!</h2>
+              <p>Compra tus entradas ahora y obtén un descuento exclusivo en tus próximas compras.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
