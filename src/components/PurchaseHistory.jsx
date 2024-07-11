@@ -20,10 +20,10 @@ const PurchaseHistory = () => {
           }));
           setPurchases(purchaseList);
         } else {
-          console.log("No data available");
+          console.log("Datita invalida");
         }
       }).catch((error) => {
-        console.error("Error fetching purchase history: ", error);
+        console.error("Error fetching historial de compras: ", error);
       });
     }
   }, [state.user]);

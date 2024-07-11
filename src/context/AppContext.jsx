@@ -8,14 +8,14 @@ const initialState = {
   carrito: [],
 };
 
-export const AppContext = createContext(initialState);
+export const AppContext = createContext(initialState); // Creo el contexto con el estado inicial.
 
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(Reducer, initialState);
 
   useEffect(() => {
     const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => { // Veo los cambio de estado y envio la accion
       if (user) {
         dispatch({ type: "SET_USER", payload: user });
       } else {
@@ -23,9 +23,9 @@ export const AppProvider = ({ children }) => {
       }
     });
 
-    // Cleanup subscription on unmount
+    // Limpiar login
     return () => unsubscribe();
-  }, []);
+  }, []);                        // [] Vacio para que solo se ejecute una vez
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>

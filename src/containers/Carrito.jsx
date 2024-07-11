@@ -18,7 +18,7 @@ const Carrito = () => {
     dispatch({ type: 'REMOVE_FROM_CARRITO', payload: { id } });
   };
 
-  console.log('Contenido del carrito:', carrito); // Agregar este log para verificar los datos
+  console.log('Contenido del carrito:', carrito); // Contenido del carrito
 
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },

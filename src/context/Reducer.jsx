@@ -13,12 +13,12 @@ const Reducer = (state, action) => {
     case "ADD_TO_CARRITO":
       return {
         ...state,
-        carrito: [...state.carrito, action.payload],
+        carrito: [...state.carrito, action.payload], // Copio el estado actual y le sumo el payload
       };
     case "REMOVE_FROM_CARRITO":
       return {
         ...state,
-        carrito: state.carrito.filter(item => item.id !== action.payload.id),
+        carrito: state.carrito.filter(item => item.id !== action.payload.id), // Al estado actual, le filtro el item con el id del payload
       };
     case "CLEAR_CARRITO":
       return {
@@ -26,7 +26,7 @@ const Reducer = (state, action) => {
         carrito: [],
       };
     default:
-      return state;
+      return state; // Si no coincide con ningun caso, se devuelve el mismo estado sin cambios
   }
 };
 

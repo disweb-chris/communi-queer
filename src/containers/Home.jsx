@@ -16,7 +16,7 @@ const Home = () => {
       try {
         const snapshot = await get(child(dbRef, "events")); // Obtener datos del nodo 'events'
         if (snapshot.exists()) {
-          const eventsData = snapshot.val();
+          const eventsData = snapshot.val();    // Guardo la foto de la base de datos
           const eventsList = Object.keys(eventsData).map(key => ({
             id: key,
             ...eventsData[key]

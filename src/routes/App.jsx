@@ -33,7 +33,7 @@ const App = () => {
               } 
             />
             <Route 
-              path="/compra"  // Asegúrate de que esta ruta coincide con la que usas en navigate
+              path="/compra"  
               element={
                 <PrivateRoute>
                   <Compra />
